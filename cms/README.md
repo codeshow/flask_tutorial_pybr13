@@ -46,7 +46,7 @@ O app será servido ao digitar `cms runserver` na linha de comando
 
 ```bash
 cms runserver
-`` 
+``` 
 
 Porém como ainda não escrevemos a implementação de `cli.py` este código irá falhar
 
