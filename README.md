@@ -16,7 +16,7 @@ Serve para criarção de blogs, sites, portais etc.. (ex: Quokka CMS, Django CMS
 
 ## Tópicos
 
-- Flask 101  
+- **Flask 101**  
     (teórico + demos ~ 1h `periodo da manhã`)
 
     * Hello world e o ambiente `web`
@@ -28,7 +28,7 @@ Serve para criarção de blogs, sites, portais etc.. (ex: Quokka CMS, Django CMS
     * Templates
     * Extensões
 
-- Arquitetura e boas práticas  
+- **Arquitetura e boas práticas**  
     (teórico + demo ~ 1h `periodo da manhã`)
 
     * `12 factor`: configurações dinâmicas
@@ -39,7 +39,7 @@ Serve para criarção de blogs, sites, portais etc.. (ex: Quokka CMS, Django CMS
     * Testing
     * Servindo a app
 
-- Construindo o CMS  
+- **Construindo o CMS**  
     (Prática - Mão na Massa - step by step ~4hrs `periodo da tarde`)
     * Arquitetura do Projeto e dicas de estrutura e qualidade
     * CLI (tudo começa na linha de comando)
@@ -97,6 +97,14 @@ venv/bin/pip3 install requirements.txt
 
 * Opcionalmente pode baixar este [zip](https://github.com/cursodepythonoficial/flask_tutorial_pybr13/raw/master/files/env.tgz) que já contém todas as dependencias e exemplos de código.
 
+
+## Info
+
+- Data: 09/10 - 10/10
+- Horário: 8:30 (é bom chegar mais cedo também!)
+- Local: UNA Barro Preto (https://goo.gl/maps/82tiKzTvMzC2)
+- Detalhes: http://2017.pythonbrasil.org.br/#schedule
+- Inscrição: Tutoriais são treinamentos de 3 a 6 horas totalmente gratuitos para você se tornar um Jedi. A menos que informado do contrário, a entrada aos tutoriais são abertas, por ordem de chegada, sem necessidade de inscrição.
 
 ## Contatos
 
