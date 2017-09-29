@@ -1,7 +1,8 @@
 import code
 import click
+from .app import create_app
 
-app = NotImplemented
+app = create_app()
 
 
 @click.group()
@@ -11,9 +12,16 @@ def main():
 
 @main.command()
 def shell():
-    """Abre um shell >>> com o `app` no contexto"""
+    """Abre um shell >>> com o `app` no contexto
+    Se o ipython estiver instalado irá iniciar um shell Ipython
+    Caso contrário iniciará um shell Python puro.
+    """
     with app.app_context():
-        code.interact(banner='My Flask APP', local={'app': app})
+        try:
+            from IPython import start_ipython
+            start_ipython(argv=[], user_ns={'app': app})
+        except:
+            code.interact(banner='My Flask APP', local={'app': app})
 
 
 @main.command()
