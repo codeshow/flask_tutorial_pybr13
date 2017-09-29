@@ -1,0 +1,17 @@
+flask
+import_string
+pymongo==2.4.1
+tinymongo
+tinydb_serialization
+dynaconf
+awesome_slugify
+mistune
+flask_simplelogin
+flask_admin
+flask_wtf
+
+# dev
+pytest
+pytest_flask
+flake8
+flask_debugtoolbar
