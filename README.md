@@ -100,7 +100,7 @@ venv/bin/pip3 install requirements.txt
 
 ## Info
 
-- Data: 09/10 - 10/10
+- Data: 09/10
 - Horário: 8:30 (é bom chegar mais cedo também!)
 - Local: UNA Barro Preto (https://goo.gl/maps/82tiKzTvMzC2)
 - Detalhes: http://2017.pythonbrasil.org.br/#schedule
