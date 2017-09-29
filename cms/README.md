@@ -21,3 +21,37 @@ cms/                   # module root
 ├── README.md          # Este arquivo
 └── settings.yml       # Configurações que serão carregadas
 ```
+
+No `setup.py` temos a seguitne configuração:
+
+```python
+setup(
+    name='cms',
+    version='0.0.1',
+    description="A simple CMS in Flask",
+    packages=['cms'],
+    package_dir={'cms': 'cms'},
+    entry_points={
+        'console_scripts': [
+            'cms=cms.cli:main'
+        ]
+    },
+    include_package_data=True,
+    install_requires=requirements
+)
+
+```
+
+O app será servido ao digitar `cms runserver` na linha de comando
+
+```bash
+cms runserver
+`` 
+
+Porém como ainda não escrevemos a implementação de `cli.py` este código irá falhar
+
+```bash
+ImportError: module 'cms.cli' has no attribute 'main'
+```
+
+Portanto precisamos implementar o `cli.py`
