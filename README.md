@@ -82,7 +82,20 @@ Contudo será apresentado snippets de código para serem replicados portanto nã
 
 * Browser atualizado (Chrome ou Firefox)
 
-* Se tiver acesso a internet no local do tutorial será excelente para instalar as dependencias. Porém recomendo clonar este repositório [intruction here] ou baixar este [zip] que já contém todas as dependencias e exemplos de código.
+* Se tiver acesso a internet no local do tutorial será excelente para instalar as dependencias. Porém recomendo clonar este repositório:
+
+Preparando o ambiente e instalando as dependencias (faça isso antes do dia do tutorial em um local com acesso a internet)
+
+```bash
+git clone git@github.com:cursodepythonoficial/flask_tutorial_pybr13.git flask_pybr
+cd flask_pybr
+python3.6 -m venv venv
+. venv/bin/activate
+cd cms
+venv/bin/pip3 install requirements.txt  
+```
+
+* Opcionalmente pode baixar este [zip](https://github.com/cursodepythonoficial/flask_tutorial_pybr13/raw/master/files/env.tgz) que já contém todas as dependencias e exemplos de código.
 
 
 ## Contatos
