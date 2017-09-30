@@ -2,7 +2,7 @@ import code
 import click
 from .app import create_app
 
-app = create_app()
+app = create_app(__name__)
 
 
 @click.group()
@@ -16,19 +16,20 @@ def shell():
     Se o ipython estiver instalado irá iniciar um shell Ipython
     Caso contrário iniciará um shell Python puro.
     """
+    click.echo(f'Iniciando o shell do {app.config.SITENAME}')
     with app.app_context():
         try:
             from IPython import start_ipython
             start_ipython(argv=[], user_ns={'app': app})
         except:
-            code.interact(banner='My Flask APP', local={'app': app})
+            code.interact(banner=app.config.SITENAME, local={'app': app})
 
 
 @main.command()
-@click.option('--debug/--no-debug', default=True)
-@click.option('--reloader/--no-reloader', default=True)
-@click.option('--host', default='0.0.0.0')
-@click.option('--port', default=5000)
+@click.option('--debug/--no-debug', default=app.config.DEBUG)
+@click.option('--reloader/--no-reloader', default=app.config.RELOADER)
+@click.option('--host', default=app.config.HOST)
+@click.option('--port', default=app.config.PORT)
 def runserver(debug, reloader, host, port):
     """Inicia o servidor em modo dev/debug"""
     app.run(debug=debug, use_reloader=reloader, host=host, port=port)

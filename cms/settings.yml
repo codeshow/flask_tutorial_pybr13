@@ -1,0 +1,8 @@
+CMS:
+  SECRET_KEY: 'real_secret_here'
+  DB_NAME: cms_db
+  SITENAME: Flask CMS
+  HOST: '0.0.0.0'
+  PORT: 5000
+  DEBUG: true
+  RELOADER: true
