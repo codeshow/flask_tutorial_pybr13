@@ -1,5 +1,5 @@
 from flask import Flask
-from cms import config
+from cms import config, ext
 
 
 def create_app(import_name):
@@ -10,5 +10,8 @@ def create_app(import_name):
 
     # Iniciar o sistema de configurações dinâmicas
     config.configure(app)
+
+    # Carregar as extensões
+    ext.configure(app)
 
     return app

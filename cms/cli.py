@@ -32,7 +32,8 @@ def shell():
 @click.option('--port', default=app.config.PORT)
 def runserver(debug, reloader, host, port):
     """Inicia o servidor em modo dev/debug"""
-    app.run(debug=debug, use_reloader=reloader, host=host, port=port)
+    app.run(debug=debug, use_reloader=reloader, host=host, port=port,
+            extra_files=[f'{app.root_path}/settings.yml'])
 
 
 @main.command()
@@ -41,10 +42,11 @@ def runserver(debug, reloader, host, port):
               confirmation_prompt=True)
 def adduser(username, password):
     """Cria um novo usuário"""
-    try:
-        app.db.create_user(username, password)
-    except Exception as e:
-        click.echo(f'Não foi possivel criar o usuário {username}')
-        raise
-    else:
-        click.echo(f"Usuário {username} criado com sucesso!")
+    with app.app_context():
+        try:
+            app.db.create_user(username, password)
+        except Exception as e:
+            click.echo(f'Não foi possivel criar o usuário {username}')
+            raise
+        else:
+            click.echo(f"Usuário {username} criado com sucesso!")
