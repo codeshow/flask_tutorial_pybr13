@@ -12,6 +12,7 @@ CMS:
     - cms.ext.admin.configure
     - cms.ext.auth.configure
     - cms.ext.debug.configure
+    - cms.ext.blog.configure
 
   DEBUG_TOOLBAR_ENABLED: true
   DEBUG_TB_INTERCEPT_REDIRECTS: false

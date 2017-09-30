@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{{config.SITENAME}}</title>
+</head>
+<body>
+    <h1>{{config.SITENAME}} - Todas as postagens </h1>
+    <ul>
+    {% for post in posts %}
+       <li>    
+            <a href="{{url_for('blog.view_post', slug=post.slug)}}">
+                {{post.titulo}}
+            </a><br>
+        </li>
+    {% endfor %}
+    </ul>
+</body>
+</html>
