@@ -95,8 +95,7 @@ git clone git@github.com:cursodepythonoficial/flask_tutorial_pybr13.git flask_py
 cd flask_pybr
 python3.6 -m venv venv
 . venv/bin/activate
-cd cms
-venv/bin/pip3 install requirements.txt  
+venv/bin/pip3 install -r requirements.txt  
 ```
 
 * Opcionalmente pode baixar este [zip](https://github.com/cursodepythonoficial/flask_tutorial_pybr13/raw/master/files/env.tgz) que já contém todas as dependencias e exemplos de código.
@@ -113,7 +112,7 @@ mkdir flask_pybr;cd flask_pybr;git clone --bare git@github.com:cursodepythonofic
 python3.6 -m venv venv; . venv/bin/activate
 
 # agora pode mudar para a ultima branch (projeto completo)
-git checkout cms_8_test
+git checkout cms_9_deploy
 pip install -r requirements.txt
 python setup.py develop
 cms adduser
