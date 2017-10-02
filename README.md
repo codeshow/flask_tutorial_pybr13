@@ -109,6 +109,9 @@ Se você quiser clonar de uma só vez todas as branches deste repositório execu
 ```bash
 mkdir flask_pybr;cd flask_pybr;git clone --bare git@github.com:cursodepythonoficial/flask_tutorial_pybr13.git .git;git config --unset core.bare;git reset --hard
 
+# Criando e ativando a virtualenv
+python3.6 -m venv venv; . venv/bin/activate
+
 # agora pode mudar para a ultima branch (projeto completo)
 git checkout cms_8_test
 pip install -r requirements.txt
