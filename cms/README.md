@@ -33,3 +33,5 @@ $ gunicorn cms.wsgi -w 4 -b "0.0.0.0:8080"
 Existem outras opções para configurar o Gunicorn mas esta é a linha de comando mais simples
 
 Repare como é importante o `import_name` que passamos para o `create_app`
+
+> OBS:  interessante que no `settings.yml` o DEBUG esteja `false` ao rodar com `wsgi`
