@@ -1,8 +1,11 @@
 #!/bin/bash
-# cms
-# cms_2_cli
+
+# Update a file in to all existing branches
+
 
 BRANCHES=(
+cms
+cms_2_cli
 cms_3_app_factory
 cms_3_config_factory
 cms_3_extension_factory
@@ -14,13 +17,16 @@ cms_7_wsgi
 cms_8_test
 )
 
+# export SOUR=/tmp/requirements.txt
+# export DEST=.
+# export MESS=":hamster:"
+
 for BRANCH in "${BRANCHES[@]}";
 do
     git checkout $BRANCH;
     git stash;
-    cp /tmp/README.md .;
-    git add README.md;
-    git commit -m ":hamster:";
+    cp $SOUR $DEST;
+    git commit -am $MESS;
     git push -u origin $BRANCH;
     git stash pop;
 done
