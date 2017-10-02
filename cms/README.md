@@ -1,140 +1,54 @@
-# 4) Criando um módulo de Blog
+# 6) Acessando arquivos estáticos
 
 ```bash
 cms/                   # module root
-├── ext/               # Extensões (Blueprints) do app
+├── static/            # Arquivos estáticos (.css, .js, .images)
 ├── templates/         # Templates Jinja2
 └── settings.yml       # Configurações que serão carregadas
 ```
 
-Agora é hora de criar nosso primeiro Blueprint que irá adicionar a funcionalidade
-de `Blog` ao CMS.
+Vamos agora colocar um arquivo estático em nossa pasta `static` e ver como é fácil acessar através dos templates.
 
-Para começar vamos adicionar o factory do blog no `settings.yml`
+Vamos utilizar o https://bootswatch.com/ que contém uma série de temas para Bootstrap, salvaremos 2 deles na pasta static.
 
+https://bootswatch.com/cerulean/bootstrap.min.css - > `static/swatch-cerulean.css`
 
-```yml
-  EXTENSIONS:
-    - cms.ext.database.configure
-    - cms.ext.admin.configure
-    - cms.ext.auth.configure
-    - cms.ext.debug.configure
-    - cms.ext.blog.configure         # <-- Nova extensão
-```
-
-Agora vamos implementar em `ext/blog.py`
+https://bootswatch.com/united/bootstrap.min.css - > `static/swatch-united.css`
 
 
-```py
-from slugify import slugify
-from flask import Blueprint, render_template, abort, current_app
-from wtforms import form, fields, validators
-from .admin import ModelView
-
-blog_blueprint = Blueprint('blog', __name__, template_folder='template')
-
-
-# Front end
-
-@blog_blueprint.route('/')
-def index():
-    """Exibe todos os posts"""
-    posts = current_app.db.blog.find({'publicado': True})
-    return render_template('blog.html', posts=posts)
-
-
-@blog_blueprint.route('/<slug>.html')
-def view_post(slug):
-    """Exibe /slug-do-post.html"""
-    post = current_app.db.blog.find_one({'publicado': True, 'slug': slug})
-    if not post:
-        abort(404, 'Post não encontrado')
-    return render_template('post.html', post=post)
-
-
-# Admin
-
-class BlogForm(form.Form):
-    """Formulário para criação da postagem no blog"""
-    titulo = fields.StringField('Titulo', [validators.required()])
-    slug = fields.HiddenField('Slug')
-    texto = fields.TextAreaField('Texto')
-    autor = fields.StringField('Autor')
-    publicado = fields.BooleanField('Publicado', default=True)
-
-
-class AdminBlog(ModelView):
-    column_list = ('titulo', 'slug', 'autor', 'publicado')
-    form = BlogForm
-
-    def on_model_change(self, form, post, is_created):
-        """Permite alterar e validar dados do formulário"""
-        post['slug'] = slugify(post['titulo']).lower()
-        if is_created and current_app.db.blog.find_one({'slug': post['slug']}):
-            raise validators.ValidationError('Titulo duplicado')
-
-
-# Factory
-
-def configure(app):
-    """Carrega a extensão Blog"""
-    # adiciona o item no /admin
-    app.admin.add_view(AdminBlog(app.db.blog, 'Blog'))
-
-    # registra o BP com / e /slug-do-post.html
-    app.register_blueprint(blog_blueprint)
-
-```
-
-E como pode perceber se tentar rodar e acessar http://localhost:5000 verá um erro
-informando que o Jinja não encontrou o template `blog.html`
-
-Vamos criar o `templates/blog.html`
+Digamos que agora queiramos carregar o tema cerulean em nosso template `base.html` basta editar incluindo o bloco `styles` suportado pelo `Flask-Bootstrap` e não se esquecer de chamar o `super()`
 
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{config.SITENAME}}</title>
-</head>
-<body>
-    <h1>{{config.SITENAME}} - Todas as postagens </h1>
-    <ul>
-    {% for post in posts %}
-       <li>    
-            <a href="{{url_for('blog.view_post', slug=post.slug)}}">
-                {{post.titulo}}
-            </a><br>
-        </li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
+{% block styles %}
+{{super()}}
+<link rel="stylesheet" href="{{url_for('static', filename='css/swatch-cerulean.css')}}">
+{% endblock %}
 ```
 
-e o `templates/post.html`
+bem simples! agora basta acessar e ver o novo visual aplicado ao blog.
+
+Vamos agora deixar isso dinamico.
+
+No `settings.yml`
+
+```yaml
+CMS:
+  ...
+  SWATCH: united
+  ...
+```
+
+e agora basta ler a config direto no template
 
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{post.titulo}}</title>
-</head>
-<body>
-    <h1>{{post.titulo}}</h1>
-    <small>por {{post.autor}}</small>
-    <p>
-        {{post.texto}}
-    </p>
-    <a href="{{url_for('blog.index')}}">Voltar</a>
-</body>
-</html>
-```
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('static', filename='css/swatch-{0}.css'.format(config.SWATCH))}}">
+{% endblock %}
+``` 
 
 
-Agora vá em http://localhost:5000/admin e adicione alguns posts!
-
-
-Próximo passo é melhorar nossos templates com Jinja!
+O acesso a qualquer outro tipo de arquivo estático é feito da mesma maneira `url_for('static', filename='')` caso o seu blueprint tenha uma pasta especifica para arquivos estaticos basta usar `.` ou o nome do Blueprint ex: `url_for('blog.static', filename='')` ou `url_for('.static', filename='')` (dentro de um template renderizado pelo blueprint)
