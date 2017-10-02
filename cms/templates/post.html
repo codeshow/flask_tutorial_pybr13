@@ -11,7 +11,7 @@
 {% block main %}
 <div class="blog-post">
     <p class="blog-post-meta">Por <a href="#">{{post.autor}}</a></p>
-    <p>{{ post.texto }}</p>
+    <p>{{ markdown(post.texto) | safe }}</p>
 </div><!-- /.blog-post -->
 {% endblock %}
  

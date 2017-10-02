@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
     <div class="container">
         <div class="navbar-header">
-            <a class="navbar-brand" href="#">{{config.SITENAME}}</a>
+            <a class="navbar-brand" href="{{url_for('blog.index')}}">{{config.SITENAME}}</a>
         </div>
         <ul class="nav navbar-nav">
             <li class="active"><a href="{{url_for('blog.index')}}">Home</a></li>
