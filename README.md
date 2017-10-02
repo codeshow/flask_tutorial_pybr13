@@ -57,6 +57,9 @@ Serve para criarção de blogs, sites, portais etc.. (ex: Quokka CMS, Django CMS
     * WSGI - [Branch](../../tree/cms_7_wsgi/cms)
     * test - [Branch](../../tree/cms_8_test/cms)
 
+- **Bonus** Deploy na PythonAnywhere.com
+    * deploy - [Branch](../../tree/cms_9_deploy/cms)
+
 ## Requisitos
 
 
