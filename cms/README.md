@@ -1,4 +1,4 @@
-# 4) Criando um módulo de Blog
+# 5) Adicionando template globals
 
 ```bash
 cms/                   # module root
@@ -7,10 +7,36 @@ cms/                   # module root
 └── settings.yml       # Configurações que serão carregadas
 ```
 
-Agora é hora de criar nosso primeiro Blueprint que irá adicionar a funcionalidade
-de `Blog` ao CMS.
+Acesse o admin e crie um novo blog post usando o formato markdown.
 
-Para começar vamos adicionar o factory do blog no `settings.yml`
+```
+titulo:  Novo post
+texto:
+    # Este e meu novo post
+    - item da lista
+    - outro item
+    > isso é uma citação
+    ![image](http://lorempixel.com/400/400)
+publicado: True
+```
+
+Salve este post e acesse http://localhost:5000 e clique no post.
+
+Você irá perceber que o texto que aparece é o markdown puro sem renderizar, precisamos fazer o render do markdown para transformar em HTML.
+
+Para isso vamos usar a lib `mistune` e inicializar em uma nova extensão em `cms/ext/markdown.py`
+
+```py
+from mistune import markdown
+
+def configure(app):
+    # adiciona {{ markdown('texto) }} para os templates
+    app.add_template_global(markdown)
+```
+
+> A extensão acima adiciona ao cotnexto fo `Jinja` a global `markdown`
+
+Agora será preciso carregar a nova extensão no `settings.yml`
 
 
 ```yml
@@ -19,122 +45,60 @@ Para começar vamos adicionar o factory do blog no `settings.yml`
     - cms.ext.admin.configure
     - cms.ext.auth.configure
     - cms.ext.debug.configure
-    - cms.ext.blog.configure         # <-- Nova extensão
+    - cms.ext.blog.configure
+    - flask_bootstrap.Bootstrap
+    - cms.ext.markdown.configure  # < ---- Nova extensão
 ```
 
-Agora vamos implementar em `ext/blog.py`
 
+A partir de agora podemos editar o template `post.html` e fazer a renderização do markdown para html
+
+```html
+
+{% extends "base.html" %}
+
+{% block title %} {{post.titulo}} - {{super()}} {% endblock %}
+
+{% block blogheader %}
+<div class="blog-header">
+  <h1 class="blog-title">{{post.titulo}}</h1>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="blog-post">
+    <p class="blog-post-meta">Por <a href="#">{{post.autor}}</a></p>
+    <p>{{ markdown(post.texto)}}</p>
+</div><!-- /.blog-post -->
+{% endblock %}
+```
+
+
+Repare que agora temos o HTML puro ao acessar o post, ainda não é o que queremos, temos 2 opções para resolver isso.
+
+
+`Markup`
 
 ```py
-from slugify import slugify
-from flask import Blueprint, render_template, abort, current_app
-from wtforms import form, fields, validators
-from .admin import ModelView
+import mistune
+from flask import Markup
 
-blog_blueprint = Blueprint('blog', __name__, template_folder='template')
+def markdown(texto):
+    return Markup(mistune.markdown(texto))
 
-
-# Front end
-
-@blog_blueprint.route('/')
-def index():
-    """Exibe todos os posts"""
-    posts = current_app.db.blog.find({'publicado': True})
-    return render_template('blog.html', posts=posts)
-
-
-@blog_blueprint.route('/<slug>.html')
-def view_post(slug):
-    """Exibe /slug-do-post.html"""
-    post = current_app.db.blog.find_one({'publicado': True, 'slug': slug})
-    if not post:
-        abort(404, 'Post não encontrado')
-    return render_template('post.html', post=post)
-
-
-# Admin
-
-class BlogForm(form.Form):
-    """Formulário para criação da postagem no blog"""
-    titulo = fields.StringField('Titulo', [validators.required()])
-    slug = fields.HiddenField('Slug')
-    texto = fields.TextAreaField('Texto')
-    autor = fields.StringField('Autor')
-    publicado = fields.BooleanField('Publicado', default=True)
-
-
-class AdminBlog(ModelView):
-    column_list = ('titulo', 'slug', 'autor', 'publicado')
-    form = BlogForm
-
-    def on_model_change(self, form, post, is_created):
-        """Permite alterar e validar dados do formulário"""
-        post['slug'] = slugify(post['titulo']).lower()
-        if is_created and current_app.db.blog.find_one({'slug': post['slug']}):
-            raise validators.ValidationError('Titulo duplicado')
-
-
-# Factory
 
 def configure(app):
-    """Carrega a extensão Blog"""
-    # adiciona o item no /admin
-    app.admin.add_view(AdminBlog(app.db.blog, 'Blog'))
-
-    # registra o BP com / e /slug-do-post.html
-    app.register_blueprint(blog_blueprint)
-
+    # adiciona {{ markdown('texto) }} para os templates
+    app.add_template_global(markdown)
 ```
 
-E como pode perceber se tentar rodar e acessar http://localhost:5000 verá um erro
-informando que o Jinja não encontrou o template `blog.html`
-
-Vamos criar o `templates/blog.html`
+Ou podemos de uma forma mais simples fazer isso no template usando o filtro `safe`
 
 
 ```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{config.SITENAME}}</title>
-</head>
-<body>
-    <h1>{{config.SITENAME}} - Todas as postagens </h1>
-    <ul>
-    {% for post in posts %}
-       <li>    
-            <a href="{{url_for('blog.view_post', slug=post.slug)}}">
-                {{post.titulo}}
-            </a><br>
-        </li>
-    {% endfor %}
-    </ul>
-</body>
-</html>
-```
-
-e o `templates/post.html`
-
-
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{post.titulo}}</title>
-</head>
-<body>
-    <h1>{{post.titulo}}</h1>
-    <small>por {{post.autor}}</small>
-    <p>
-        {{post.texto}}
-    </p>
-    <a href="{{url_for('blog.index')}}">Voltar</a>
-</body>
-</html>
+ <p>{{ markdown(post.texto) | safe }}</p>
 ```
 
 
-Agora vá em http://localhost:5000/admin e adicione alguns posts!
 
 
-Próximo passo é melhorar nossos templates com Jinja!
