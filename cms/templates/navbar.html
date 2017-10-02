@@ -8,7 +8,7 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if session.simple_logged_in %}
-                <li><a>Logged in as {{session.simple_username}}</a></li>
+                <li><a href="{{ url_for('admin.index')}}">Logged in as {{session.simple_username}}</a></li>
                 <li><a href="{{url_for('simplelogin.logout')}}">logout</a></li>
             {% else %}
                 <li><a href="{{url_for('simplelogin.login')}}">login</a></li>  

@@ -2,6 +2,12 @@
 
 {% block title %} {{config.SITENAME}} {% endblock %}
 
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('static', filename='css/swatch-{0}.css'.format(config.SWATCH))}}">
+{% endblock %}
+
 {% block navbar %}{% include 'navbar.html'%}{% endblock %}
 
 {% block content %}
