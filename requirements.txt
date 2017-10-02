@@ -9,8 +9,9 @@ mistune
 flask_simplelogin
 flask_admin
 flask_wtf
-flask_bootstrap 
+flask_bootstrap
 PyYAML
+gunicorn
 
 # dev
 pytest
