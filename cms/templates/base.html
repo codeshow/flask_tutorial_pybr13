@@ -1,0 +1,27 @@
+{% extends "bootstrap/base.html" %}
+
+{% block title %} {{config.SITENAME}} {% endblock %}
+
+{% block navbar %}{% include 'navbar.html'%}{% endblock %}
+
+{% block content %}
+<div class="container">
+    {% block blogheader %}
+        <div class="blog-header">
+        <h1 class="blog-title">
+            {{config.TITLE | default('Add title to config.TITLE', True)}}
+        </h1>
+        <p class="lead blog-description">
+            {{config.DESCRIPTION | default('Add description to config.DESCRIPTION', True)}}
+        </p>
+        </div>
+    {% endblock %}
+    <div class="row">
+        <div class="col-sm-8 blog-main">
+            {% block main %}{% endblock %}
+            {% include 'pager.html'%}
+        </div><!-- /.blog-main -->
+        {% include 'sidebar.html' %}
+    </div><!-- /.row -->
+</div><!-- /.container -->
+{% endblock %}

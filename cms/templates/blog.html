@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{config.SITENAME}}</title>
-</head>
-<body>
-    <h1>{{config.SITENAME}} - Todas as postagens </h1>
-    <ul>
+{% extends "base.html" %}
+
+{% block main %}
+
     {% for post in posts %}
-       <li>    
-            <a href="{{url_for('blog.view_post', slug=post.slug)}}">
-                {{post.titulo}}
-            </a><br>
-        </li>
+        <div class="blog-post">
+            <h2 class="blog-post-title">
+                <a href="{{url_for('blog.view_post', slug=post.slug)}}">
+                    {{post.titulo}}
+                </a>
+            </h2>
+            <p class="blog-post-meta">Por {{post.autor}}</a></p>
+            <p>{{post.texto[:140]}}</p>
+        </div><!-- /.blog-post -->
     {% endfor %}
-    </ul>
-</body>
-</html>
+
+{% endblock %}

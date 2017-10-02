@@ -1,0 +1,18 @@
+<div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+    {% block sidebar %}
+    <div class="sidebar-module sidebar-module-inset">
+    <h4>About</h4>
+    <p>{{config.ABOUT|default('Add text to config.ABOUT', True)}}</p>
+    </div>
+    <div class="sidebar-module">
+    <h4>Links</h4>
+    <ol class="list-unstyled">
+        {% for name, url in config.get('LINKS', []) %}
+          <li><a href="{{url}}">{{name}}</a></li>
+        {% else %}
+          Add links to config.LINKS 
+        {% endfor %}
+    </ol>
+    </div>
+{% endblock %}
+</div><!-- /.blog-sidebar -->

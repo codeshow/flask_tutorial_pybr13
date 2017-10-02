@@ -1,7 +1,15 @@
 CMS:
   SECRET_KEY: 'real_secret_here'
   DB_NAME: cms_db
+
   SITENAME: Flask CMS
+  # TITLE: Hello
+  # DESCRIPTION: Awesome Blog
+  # ABOUT: This is my blog, I am xyz
+  # LINKS:
+  #   - ['Github', 'http://github.com']
+  #   - ['Twitter', 'http://twitter.com']
+
   HOST: '0.0.0.0'
   PORT: 5000
   DEBUG: true
@@ -13,6 +21,7 @@ CMS:
     - cms.ext.auth.configure
     - cms.ext.debug.configure
     - cms.ext.blog.configure
+    - flask_bootstrap.Bootstrap
 
   DEBUG_TOOLBAR_ENABLED: true
   DEBUG_TB_INTERCEPT_REDIRECTS: false

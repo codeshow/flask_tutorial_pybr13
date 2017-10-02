@@ -1,0 +1,18 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#">{{config.SITENAME}}</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="{{url_for('blog.index')}}">Home</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            {% if session.simple_logged_in %}
+                <li><a>Logged in as {{session.simple_username}}</a></li>
+                <li><a href="{{url_for('simplelogin.logout')}}">logout</a></li>
+            {% else %}
+                <li><a href="{{url_for('simplelogin.login')}}">login</a></li>  
+            {% endif %}
+        </ul>
+    </div><!--/.container -->
+</nav>

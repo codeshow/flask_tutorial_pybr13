@@ -1,14 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>{{post.titulo}}</title>
-</head>
-<body>
-    <h1>{{post.titulo}}</h1>
-    <small>por {{post.autor}}</small>
-    <p>
-        {{post.texto}}
-    </p>
-    <a href="{{url_for('blog.index')}}">Voltar</a>
-</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %} {{post.titulo}} - {{super()}} {% endblock %}
+
+{% block blogheader %}
+<div class="blog-header">
+  <h1 class="blog-title">{{post.titulo}}</h1>
+</div>
+{% endblock %}
+
+{% block main %}
+<div class="blog-post">
+    <p class="blog-post-meta">Por <a href="#">{{post.autor}}</a></p>
+    <p>{{ post.texto }}</p>
+</div><!-- /.blog-post -->
+{% endblock %}
+ 
