@@ -12,6 +12,9 @@ requirements = [
     'flask_simplelogin',
     'flask_admin',
     'flask_wtf',
+    'flask_bootstrap',
+    'PyYAML',
+    'gunicorn'
 ]
 
 
