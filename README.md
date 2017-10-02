@@ -39,6 +39,8 @@ Serve para criarção de blogs, sites, portais etc.. (ex: Quokka CMS, Django CMS
     * Testing
     * Servindo a app
 
+## Mão na massa
+
 - **Construindo o CMS**  
     (Prática - Mão na Massa - step by step ~4hrs `periodo da tarde`)
     * Arquitetura do Projeto e dicas de estrutura e qualidade - [Branch](../../tree/cms/cms)
