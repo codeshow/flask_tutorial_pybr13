@@ -2,7 +2,7 @@ from flask import Flask
 from cms import config, ext
 
 
-def create_app(import_name):
+def create_app(import_name='cms'):
     """import_name tem que ser sempre a raiz do projeto
     onde está o cli.py, templates/ e static/"""
 
