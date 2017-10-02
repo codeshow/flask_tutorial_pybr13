@@ -41,17 +41,21 @@ Serve para criarção de blogs, sites, portais etc.. (ex: Quokka CMS, Django CMS
 
 - **Construindo o CMS**  
     (Prática - Mão na Massa - step by step ~4hrs `periodo da tarde`)
-    * Arquitetura do Projeto e dicas de estrutura e qualidade
-    * CLI (tudo começa na linha de comando)
+    * Arquitetura do Projeto e dicas de estrutura e qualidade - [Branch](../../tree/cms/cms)
+    * CLI (tudo começa na linha de comando) - [Branch](../../tree/cms_2_cli/cms)
     * Factories
-        * Application factory
-        * Configuration factory
-        * Extension Factory
-    * Autenticação
-    * Banco de dados NoSQL  
-      (neste tutorial não abordaremos SQL nem ORMs)
-    * Flask-Admin, AdminViews & WTForms
-    * Jinja environment & Extensions
+        * Application factory - [Branch](../../tree/cms_3_app_factory/cms)
+        * Configuration factory - [Branch](../../tree/cms_3_config_factory/cms)
+        * Extension factory - [Branch](../../tree/cms_3_extension_factory/cms)
+            * Autenticação
+            * Banco de dados NoSQL  
+              (neste tutorial não abordaremos SQL nem ORMs)
+    * Flask-Admin, AdminViews & WTForms - [Branch](../../tree/cms_4_blog/cms)
+    * Jinja - [Branch](../../tree/cms_5_jinja/cms)
+    * Jinja Extensions - [Branch](../../tree/cms_5_template_globals/cms)
+    * Arquivos estáticos - [Branch](../../tree/cms_6_static/cms)
+    * WSGI - [Branch](../../tree/cms_7_wsgi/cms)
+    * test - [Branch](../../tree/cms_8_test/cms)
 
 ## Requisitos
 
@@ -97,6 +101,21 @@ venv/bin/pip3 install requirements.txt
 
 * Opcionalmente pode baixar este [zip](https://github.com/cursodepythonoficial/flask_tutorial_pybr13/raw/master/files/env.tgz) que já contém todas as dependencias e exemplos de código.
 
+
+## Advanced
+
+Se você quiser clonar de uma só vez todas as branches deste repositório execute:
+
+```bash
+mkdir flask_pybr;cd flask_pybr;git clone --bare git@github.com:cursodepythonoficial/flask_tutorial_pybr13.git .git;git config --unset core.bare;git reset --hard
+
+# agora pode mudar para a ultima branch (projeto completo)
+git checkout cms_8_test
+pip install -r requirements.txt
+python setup.py install
+cms adduser
+cms runserver
+```
 
 ## Info
 
