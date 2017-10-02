@@ -115,7 +115,7 @@ python3.6 -m venv venv; . venv/bin/activate
 # agora pode mudar para a ultima branch (projeto completo)
 git checkout cms_8_test
 pip install -r requirements.txt
-python setup.py install
+python setup.py develop
 cms adduser
 cms runserver
 ```
