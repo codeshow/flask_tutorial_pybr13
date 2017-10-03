@@ -2,7 +2,7 @@
 
 import code
 import click
-from .app import create_app
+from cms.app import create_app
 
 app = create_app(__name__)
 
@@ -52,3 +52,7 @@ def adduser(username, password):
             raise
         else:
             click.echo(f"Usuario {username} criado com sucesso!")
+
+
+if __name__ == "__main__":
+    main()

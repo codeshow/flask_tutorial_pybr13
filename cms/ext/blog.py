@@ -3,7 +3,7 @@
 from slugify import slugify
 from flask import Blueprint, render_template, abort, current_app
 from wtforms import form, fields, validators
-from .admin import ModelView
+from cms.ext.admin import ModelView
 
 blog_blueprint = Blueprint('blog', __name__, template_folder='template')
 
