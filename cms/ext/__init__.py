@@ -1,8 +1,10 @@
+# coding: utf-8
+
 import import_string
 
 
 def configure(app):
-    """Extension Factory, carrega as extensões definidas em
+    """Extension Factory, carrega as extensoes definidas em
     app.config.EXTENSIONS
     """
     for extension in app.config.get('EXTENSIONS', []):
@@ -12,4 +14,4 @@ def configure(app):
         except Exception as e:
             app.logger.error(f'Erro ao carregar {extension}: {e}')
         else:
-            app.logger.debug(f'Extensão {extension} carregada com sucesso!')
+            app.logger.debug(f'Extensao {extension} carregada com sucesso!')

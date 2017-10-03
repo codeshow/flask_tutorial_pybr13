@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from dynaconf.contrib.flask_dynaconf import FlaskDynaconf
 
 
@@ -7,7 +9,7 @@ def configure(app):
     e arquivos diferentes.
     Como arquivos yaml, ini, json,
     bancos de dados como Mongo ou Redis
-    e variavéis de ambiente
+    e variaveis de ambiente
     """
     FlaskDynaconf(
         app=app,

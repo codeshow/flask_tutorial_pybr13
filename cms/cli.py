@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import code
 import click
 from .app import create_app
@@ -13,8 +15,8 @@ def main():
 @main.command()
 def shell():
     """Abre um shell >>> com o `app` no contexto
-    Se o ipython estiver instalado irá iniciar um shell Ipython
-    Caso contrário iniciará um shell Python puro.
+    Se o ipython estiver instalado ira iniciar um shell Ipython
+    Caso contrário iniciara um shell Python puro.
     """
     click.echo(f'Iniciando o shell do {app.config.SITENAME}')
     with app.app_context():
@@ -41,12 +43,12 @@ def runserver(debug, reloader, host, port):
 @click.option('--password', prompt=True, required=True, hide_input=True,
               confirmation_prompt=True)
 def adduser(username, password):
-    """Cria um novo usuário"""
+    """Cria um novo usuario"""
     with app.app_context():
         try:
             app.db.create_user(username, password)
         except Exception as e:
-            click.echo(f'Não foi possivel criar o usuário {username}')
+            click.echo(f'Nao foi possivel criar o usuario {username}')
             raise
         else:
-            click.echo(f"Usuário {username} criado com sucesso!")
+            click.echo(f"Usuario {username} criado com sucesso!")

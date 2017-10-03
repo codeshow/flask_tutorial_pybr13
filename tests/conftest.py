@@ -1,3 +1,5 @@
+# coding: utf-8
+
 import pytest
 from cms.app import create_app
 

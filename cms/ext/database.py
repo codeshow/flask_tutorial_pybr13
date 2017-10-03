@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from pathlib import Path
 from tinymongo import TinyMongoClient
 

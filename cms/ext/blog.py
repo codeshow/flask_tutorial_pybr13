@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from slugify import slugify
 from flask import Blueprint, render_template, abort, current_app
 from wtforms import form, fields, validators
@@ -27,7 +29,7 @@ def view_post(slug):
 # Admin
 
 class BlogForm(form.Form):
-    """Formulário para criação da postagem no blog"""
+    """Formulario para criacao da postagem no blog"""
     titulo = fields.StringField('Titulo', [validators.required()])
     slug = fields.HiddenField('Slug')
     texto = fields.TextAreaField('Texto')
@@ -40,7 +42,7 @@ class AdminBlog(ModelView):
     form = BlogForm
 
     def on_model_change(self, form, post, is_created):
-        """Permite alterar e validar dados do formulário"""
+        """Permite alterar e validar dados do formulario"""
         post['slug'] = slugify(post['titulo']).lower()
         if is_created and current_app.db.blog.find_one({'slug': post['slug']}):
             raise validators.ValidationError('Titulo duplicado')
@@ -49,7 +51,7 @@ class AdminBlog(ModelView):
 # Factory
 
 def configure(app):
-    """Carrega a extensão Blog"""
+    """Carrega a extensao Blog"""
     # adiciona o item no /admin
     app.admin.add_view(AdminBlog(app.db.blog, 'Blog'))
 

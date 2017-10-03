@@ -1,4 +1,4 @@
-
+# coding: utf-8
 
 def test_config_sitename(app):
     assert app.config.SITENAME == 'Flask CMS'

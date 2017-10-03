@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from flask import current_app
 from flask_simplelogin import SimpleLogin
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -12,7 +14,7 @@ def configure(app):
 
 
 def login_checker(user):
-    """Valida o usuário e senha para efetuar o login"""
+    """Valida o usuario e senha para efetuar o login"""
     username = user.get('username')
     password = user.get('password')
     if not username or not password:
@@ -29,9 +31,9 @@ def login_checker(user):
 
 
 def create_user(username, password):
-    """Registra um novo usuário caso não esteja cadastrado"""
+    """Registra um novo usuario caso nao esteja cadastrado"""
     if current_app.db.users.find_one({'username': username}):
-        raise RuntimeError(f'{username} já está cadastrado')
+        raise RuntimeError(f'{username} ja esta cadastrado')
 
     user = {'username': username,
             'password': generate_password_hash(password)}

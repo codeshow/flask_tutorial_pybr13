@@ -1,3 +1,5 @@
+# coding: utf-8
+
 from flask_admin import Admin
 from flask_admin.base import AdminIndexView
 from flask_admin.contrib.pymongo import ModelView
@@ -9,7 +11,7 @@ ModelView._handle_view = login_required(ModelView._handle_view)
 
 
 def configure(app):
-    """Inicia uma instância do Flask-Admin"""
+    """Inicia uma instancia do Flask-Admin"""
     app.admin = Admin(
         app,
         name=app.config.get('FLASK_ADMIN_NAME', 'Flask CMS'),
