@@ -17,7 +17,7 @@ CMS:
   HOST: '0.0.0.0'
   PORT: 5000
   DEBUG: false
-  RELOADER: true
+  RELOADER: false
   
   EXTENSIONS:
     - cms.ext.database.configure
