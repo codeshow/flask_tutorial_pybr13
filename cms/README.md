@@ -15,7 +15,8 @@ Exemplo:
 ```python
 def create_object():
     """factory inicial cria o novo objeto"""
-    return {}
+    obj = {}  # neste exemplo é um dicionário vazio
+    return obj
 
 def factory_add_foo(x):
     x['foo'] = 'bar'
@@ -36,9 +37,9 @@ print(obj)
 {'foo': 'bar', 'DEBUG': True}
 ```
 
-Então considere que o **obj** do exemplo acima é uma **app** `Flask` e aplicamos o mesmo conceito compondo a **app** através de extensões que são **functions** ou **Classes** que recebem o **app** como primeiro argumento. 
+Então agora imagine que o **obj** do exemplo acima é uma **app** `Flask` e aplicamos o mesmo conceito compondo a **app** através de extensões que são **functions** ou **Classes** que recebem o **app** como primeiro argumento. 
 
-## Então nós temos a implementação de `app/__init__.py` com o application factory.
+## implementação de `app/__init__.py` com o application factory.
 
 ```py
 from flask import Flask
