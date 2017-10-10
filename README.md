@@ -89,7 +89,7 @@ Contudo será apresentado snippets de código para serem replicados portanto nã
 #### Técnicos
 
 * Computador com `Python 3.6+` instalado, não será abordado a instalação do Python3.6 portanto aconselho estar com esta versão já disponivel.
-(recomendo a ferramenta `pyenv` para automatizar a instalação e aproveite os dias que antecedem o tutorial para conseguir ajuda durante o evento para instalar)
+(recomendo a ferramenta `pyenv` para automatizar a instalação e aproveite os dias que antecedem o tutorial para conseguir ajuda durante o evento para instalar, [tutorial de como usar o pyenv](http://blog.abraseucodigo.com.br/instalando-qualquer-versao-do-python-no-linux-macosx-utilizando-pyenv.html))
 
 * Sistema operacional de sua preferencia desde que tenha dominio do uso de seu `console/terminal`, recomendo o uso de **Linux**
 
