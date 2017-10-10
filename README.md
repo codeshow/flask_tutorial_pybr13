@@ -76,11 +76,9 @@ O código final deste tutorial está na branch `cms_9_deploy`: https://github.co
 
 ### Parte 1 - manhã
 
-Para participar da parte teórica (periodo da manhã) não tem nenhum requisito, todas as pessoas de qualquer nivel de conhecimento mesmo sem um computador pode participar.
-
+Para participar da parte teórica (periodo da manhã) não tem nenhum requisito, todas as pessoas de qualquer nivel de conhecimento em Python mesmo sem um computador pode participar.
 
 ### parte 2 - tarde
-
 
 #### Conhecimento 
 
