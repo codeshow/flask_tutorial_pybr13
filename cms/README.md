@@ -1,5 +1,8 @@
 # 2) CLI (tudo começa na linha de comando)
 
+Para ferramenta de linha de comando usaremos o `click` e a nossa função `main` será um grupo de comandos do `click`
+
+
 ```bash
 cms/                   # module root
 ├── cli.py             # Ferramenta de linha de comando `cms --help`
@@ -15,10 +18,13 @@ import click
 app = NotImplemented
 
 
+# funcao que sera invocada ao rodar `$ cms` no console
 @click.group()
 def main():
     """Flask CMS"""
 
+
+# Sub comandos adicionados ao grupo `main` 
 
 @main.command()
 def shell():
@@ -97,4 +103,7 @@ AttributeError: 'NotImplementedType' object has no attribute 'run'
 
 
 Precisamos implementar os factories que irão criar o `app` ex: `app = create_app`
+
+
+[<<-- anterior](../../../tree/cms/cms)  -  [próximo -->>](../../../tree/cms_3_app_factory/cms)
 
