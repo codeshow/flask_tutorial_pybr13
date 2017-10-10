@@ -15,6 +15,7 @@ cms_5_template_globals
 cms_6_static
 cms_7_wsgi
 cms_8_test
+cms_9_deploy
 )
 
 # export SOUR=/tmp/requirements.txt
