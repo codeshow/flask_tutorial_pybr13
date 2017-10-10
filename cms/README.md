@@ -92,7 +92,7 @@ def create_app(import_name):
 
 # Extensões
 
-A primeira extensão que carregamos é a de banco de dados e neste tutorial estamos usando o `TinyDB` com `TinyMongo` 
+A primeira extensão que carregamos é a de banco de dados e neste tutorial estamos usando o `TinyDB` com `TinyMongo` pois este banco de dados não exige a instalação do MongoDB, oferece as mesmas funcionalidades porém salvando os dados em um simples arquivo JSON.
 
 > NOTA: Em produção você poderá trocar para uma conexão com o `MongoClient` o TinyDB é apenas para desenvolvimento.
 
