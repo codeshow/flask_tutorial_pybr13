@@ -13,16 +13,20 @@ Factory é um padrão recomendado pela [documentação oficial do Flask](http://
 Exemplo:
 
 ```python
+def create_object():
+    """factory inicial cria o novo objeto"""
+    return {}
+
 def factory_add_foo(x):
     x['foo'] = 'bar'
     
 def factory_enable_debug(x):
     x['DEBUG'] = True
 
-obj = {}
-
+obj = create_object()
 factory_add_foo(obj)
 factory_enable_debug(obj)
+...
 ```
 
 No final temos um objeto composto pelas funcionalidades das **factories**
