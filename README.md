@@ -22,7 +22,7 @@ O código final deste tutorial está na branch `cms_9_deploy`: https://github.co
 
 Para seguir o tutorial mude de branch no dropdown do github e vá acompanhando o descritivo localizado em [cms/README.md](../../tree/cms/cms)
 
-### TL;DR: Comece aqui -> [Parte 1](../../tree/master/cms)
+### TL;DR: Comece aqui -> [Parte 0](../../tree/master/cms)
 
 ## Tópicos
 
@@ -53,6 +53,7 @@ Para seguir o tutorial mude de branch no dropdown do github e vá acompanhando o
 
 - **Construindo o CMS**  
     (Prática - Mão na Massa - step by step ~4hrs `periodo da tarde`)
+    * Ambiente - [Branch](../../tree/master/cms)
     * Arquitetura do Projeto e dicas de estrutura e qualidade - [Branch](../../tree/cms/cms)
     * CLI (tudo começa na linha de comando) - [Branch](../../tree/cms_2_cli/cms)
     * Factories
