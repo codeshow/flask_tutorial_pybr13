@@ -11,9 +11,19 @@ Vamos agora colocar um arquivo estático em nossa pasta `static` e ver como é f
 
 Vamos utilizar o https://bootswatch.com/ que contém uma série de temas para Bootstrap, salvaremos 2 deles na pasta static.
 
+Clique bom o botão direito e `salvar link como..` para as pastas indicadas e com os nomes indicados
+
 https://bootswatch.com/cerulean/bootstrap.min.css - > `static/swatch-cerulean.css`
 
 https://bootswatch.com/united/bootstrap.min.css - > `static/swatch-united.css`
+
+Se preferir faça via linha de comando se tiver o `wget` disponivel, estando na pasta raiz do projeto (onde vc clonou o repositorio)
+
+```bash
+wget https://bootswatch.com/cerulean/bootstrap.min.css -o cms/static/swatch-cerulean.css
+wget https://bootswatch.com/united/bootstrap.min.css -o cms/static/swatch-united.css
+```
+> DICA: pode repetir o processo acima para os outros temas disponiveis no bootswatch
 
 
 Digamos que agora queiramos carregar o tema cerulean em nosso template `base.html` basta editar incluindo o bloco `styles` suportado pelo `Flask-Bootstrap` e não se esquecer de chamar o `super()`
@@ -26,9 +36,11 @@ Digamos que agora queiramos carregar o tema cerulean em nosso template `base.htm
 {% endblock %}
 ```
 
+a função global `url_for` cria url para acessar os arquivos estáticos basta passar `static` como primeiro argumento e `filename` contendo o caminho do arquivo que deseja acessar.
+
 bem simples! agora basta acessar e ver o novo visual aplicado ao blog.
 
-Vamos agora deixar isso dinamico.
+Vamos agora deixar isso dinâmico.
 
 No `settings.yml`
 
@@ -50,5 +62,8 @@ e agora basta ler a config direto no template
 {% endblock %}
 ``` 
 
-
 O acesso a qualquer outro tipo de arquivo estático é feito da mesma maneira `url_for('static', filename='')` caso o seu blueprint tenha uma pasta especifica para arquivos estaticos basta usar `.` ou o nome do Blueprint ex: `url_for('blog.static', filename='')` ou `url_for('.static', filename='')` (dentro de um template renderizado pelo blueprint)
+
+
+[<<-- anterior](../../../tree/cms_5_template_globals/cms)  -  [próximo -->>](../../../tree/cms_7_wsgi/cms)
+
