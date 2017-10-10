@@ -86,7 +86,7 @@ def configure(app):
 
 ```
 
-E como pode perceber se tentar rodar e acessar http://localhost:5000 verá um erro
+E como pode perceber se tentar rodar `cms runserver` e acessar http://localhost:5000 verá um erro
 informando que o Jinja não encontrou o template `blog.html`
 
 Vamos criar o `templates/blog.html`
@@ -133,8 +133,13 @@ e o `templates/post.html`
 </html>
 ```
 
+rode `cms runserver`
 
-Agora vá em http://localhost:5000/admin e adicione alguns posts!
+Agora vá em http://localhost:5000/admin e adicione alguns posts! e acesse em http://localhost:5000
 
 
 Próximo passo é melhorar nossos templates com Jinja!
+
+
+[<<-- anterior](../../../tree/cms_3_extension_factory/cms)  -  [próximo -->>](../../../tree/cms_5_jinja/cms)
+
