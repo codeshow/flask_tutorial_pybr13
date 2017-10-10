@@ -30,6 +30,9 @@ $ pip install gunicorn
 $ gunicorn cms.wsgi -w 4 -b "0.0.0.0:8080"
 ```
 
+> NOTA: caso tenha algum problema pode especificar o caminho completo da virtualenv `venv/bin/gunicorn cms.wsgi -w 4 "0.0.0.0:8000"`
+
+
 Existem outras opções para configurar o Gunicorn mas esta é a linha de comando mais simples
 
 Repare como é importante o `import_name` que passamos para o `create_app`
