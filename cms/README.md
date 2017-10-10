@@ -94,3 +94,7 @@ export CMS_SITENAME='Meu Flask CMS!'
 ```
 
 O próximo passo é carregar algumas extensões no `extension factory`
+
+
+[<<-- anterior](../../../tree/cms_3_config_factory/cms)  -  [próximo -->>](../../../tree/cms_3_extension_factory/cms)
+
