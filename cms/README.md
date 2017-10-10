@@ -22,7 +22,14 @@ cms/                   # module root
 └── settings.yml       # Configurações que serão carregadas
 ```
 
-No `setup.py` temos a seguitne configuração:
+Para criar os arquivos iniciais execute as 2 linhas abaixo
+
+```bash
+mkdir -p tests cms/{app,config,ext,static,templates}
+touch cms/{cli.py,__init__.py,settings.yml,{app,config,ext}/__init__.py}
+```
+
+No `setup.py` temos a seguinte configuração:
 
 ```python
 setup(
@@ -42,6 +49,9 @@ setup(
 
 ```
 
+agora ao rodar `python setup.py develop` a ferramente `cms` estará disponível.
+
+
 O app será servido ao digitar `cms runserver` na linha de comando
 
 ```bash
@@ -54,4 +64,7 @@ Porém como ainda não escrevemos a implementação de `cli.py` este código ir�
 ImportError: module 'cms.cli' has no attribute 'main'
 ```
 
-Portanto precisamos implementar o `cli.py`
+Portanto precisamos implementar a função `main` no módulo `cli.py`
+
+
+[<<-- anterior](../../../tree/master/cms)  -  [próximo -->>](../../../tree/cms_2_cli/cms)
