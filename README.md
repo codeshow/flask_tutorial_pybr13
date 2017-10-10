@@ -110,9 +110,6 @@ python3.6 -m venv venv
 venv/bin/pip3 install -r requirements.txt  
 ```
 
-* Opcionalmente pode baixar este [zip](https://github.com/cursodepythonoficial/flask_tutorial_pybr13/raw/master/files/env.tgz) que já contém todas as dependencias e exemplos de código.
-
-
 ## Advanced
 
 Se você quiser clonar de uma só vez todas as branches deste repositório execute:
