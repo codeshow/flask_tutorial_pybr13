@@ -22,6 +22,12 @@ def app():
 
 Agora todos nossos testes terão em seu escopo a fixture `app` e então usaremos `app.app_context()` e o `app.test_client()` dependendo do tipo de teste.
 
+- app.app_context
+  fornece um contexto `mock` da app, prove os objetos `request`, `session` , `g` , `current_app` para acessarmos durante os testes
+
+- app.test_client
+  fornece uma espécie de **headless browser** que responde a métodos HTTP get, post, put, delete etc...
+
 
 ```py
 
@@ -69,3 +75,6 @@ def test_can_request_a_post(app):
     # clean up
     app.db.blog.delete_one({'slug': 'este-e-um-outro-teste'})
 ```
+
+
+[<<-- anterior](../../../tree/cms_7_wsgi/cms)  -  [próximo -->>](../../../tree/cms_9_deploy/cms)
