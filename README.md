@@ -20,8 +20,6 @@ O admin em http://pybrflask.pythonanywhere.com/admin (usuario: admin senha: admi
 
 O código final deste tutorial está na branch `cms_9_deploy`: https://github.com/cursodepythonoficial/flask_tutorial_pybr13/tree/cms_9_deploy
 
-Para seguir o tutorial mude de branch no dropdown do github e vá acompanhando o descritivo localizado em [cms/README.md](../../tree/cms/cms)
-
 ### TL;DR: Comece aqui -> [Parte 0](../../tree/master/cms)
 
 ## Tópicos
