@@ -14,6 +14,13 @@ dinâmico de conteúdo e a apresentação e controle de seu acesso.
 
 Serve para criarção de blogs, sites, portais etc.. (ex: Quokka CMS, Django CMS, Wordpress)
 
+O aplicativo em funcionamento esté em http://pybrflask.pythonanywhere.com/
+O admin em http://pybrflask.pythonanywhere.com/admin (usuario: admin senha: admin)
+
+O código final deste tutorial está na branch `cms_9_deploy`: https://github.com/cursodepythonoficial/flask_tutorial_pybr13/tree/cms_9_deploy
+
+Para seguir o tutorial mude de branch no dropdown do github e vá acompanhando o descritivo localizado em [cms/README.md](../../tree/cms/cms)
+
 ## Tópicos
 
 - **Flask 101**  
