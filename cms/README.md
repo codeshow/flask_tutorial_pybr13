@@ -45,7 +45,9 @@ Carregaremos dinamicamente todos os módulos definidos na lista `EXTENSIONS` e
 para cada um esperamos a existencia de uma função `configure` que recebe `app`
 como único argumento.
 
-a primeira coisa a fazer é implementar o `extension factory` em `ext/__init__.py`
+a primeira coisa a fazer é implementar o `extension factory` em `ext/__init__.py` utilizando o `import_string` para a partir de um texto contento o caminho completo de um módulo podermos importa-lo para um objeto Python como na implementação abaixo: 
+
+`ext/__init__.py`
 
 ```py
 import import_string
@@ -83,14 +85,16 @@ def create_app(import_name):
     config.configure(app)
 
     # Carregar as extensões
-    ext.configure(app)
+    ext.configure(app)         #   < --- Extension Factory iniciado aqui
 
     return app
 ```
 
 # Extensões
 
-A primeira extensão que carregamos é a de banco de dados
+A primeira extensão que carregamos é a de banco de dados e neste tutorial estamos usando o `TinyDB` com `TinyMongo` 
+
+> NOTA: Em produção você poderá trocar para uma conexão com o `MongoClient` o TinyDB é apenas para desenvolvimento.
 
 ## TinyMongo
 
@@ -111,7 +115,11 @@ def configure(app):
     app.db = client[db_name]
 ```
 
+> NOTA: uma atenção especial a linha `app.db = client[db_name]` pois nela estamos fazendo a atribuição de nossa referencia a um banco de dados para um atributo do **app** e isso funciona bem em alguns casos como o TinyDB, porém para casos como **SQLAlchemy** é mais recomendado atribuir o objeto **db** ao Flask Global Object `from flask import g; g.db = client[db_name]` pois este objeto tem escopo global apenas durante o request.
+
 ## Autenticação
+
+Para autenticação usaremos o `Flask_simplelogin` que é a extensão mais simples para login no Flask.
 
 No `ext/auth.py`
 
@@ -126,9 +134,35 @@ def configure(app):
     SimpleLogin(app, login_checker=login_checker)
     app.db.create_user = create_user
 
-def login_checker(...):
+# Functions
 
-def create_user(...):
+
+def login_checker(user):
+    """Valida o usuário e senha para efetuar o login"""
+    username = user.get('username')
+    password = user.get('password')
+    if not username or not password:
+        return False
+
+    existing_user = current_app.db.users.find_one({'username': username})
+    if not existing_user:
+        return False
+
+    if check_password_hash(existing_user.get('password'), password):
+        return True
+
+    return False
+
+
+def create_user(username, password):
+    """Registra um novo usuário caso não esteja cadastrado"""
+    if current_app.db.users.find_one({'username': username}):
+        raise RuntimeError(f'{username} já está cadastrado')
+
+    user = {'username': username,
+            'password': generate_password_hash(password)}
+
+    current_app.db.users.insert_one(user)
 
 ```
 
@@ -142,7 +176,7 @@ from flask_admin.base import AdminIndexView
 from flask_admin.contrib.pymongo import ModelView
 from flask_simplelogin import login_required
 
-# decorate Flask-Admin view via Monkey Patching
+# decorate Flask-Admin views for login via Monkey Patching
 AdminIndexView._handle_view = login_required(AdminIndexView._handle_view)
 ModelView._handle_view = login_required(ModelView._handle_view)
 
@@ -199,3 +233,6 @@ CMS:
   FLASK_ADMIN_TEMPLATE_MODE: bootstrap3
   FLASK_ADMIN_SWATCH: default
 ```
+
+
+[<<-- anterior](../../../tree/cms_3_config_factory/cms)  -  [próximo -->>](../../../tree/cms_4_blog/cms)
