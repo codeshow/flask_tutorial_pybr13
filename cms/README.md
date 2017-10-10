@@ -26,13 +26,13 @@ Comece incluindo o `FlaskBootstrap` como nova extensao no `settings.yml`
     - cms.ext.auth.configure
     - cms.ext.debug.configure
     - cms.ext.blog.configure
-    - flask_bootstrap.Bootstrap   # <-- Nova extensão
+    - flask_bootstrap.Bootstrap   # <-- Nova extensão que recebera `app` como primeiro argumento
 ```
 
 > O nosso `extension factory` aceita qualquer `callable` que receba `app` como argumento, portanto podemos carregar extensões externas aqui.
 
 
-Agora vamos ajustar os teplates para usar o FlaskBootstrap
+Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta extender o template `bootstrap/base.html`.
 
 `templates/base.html`
 
@@ -193,3 +193,6 @@ CMS:
   ...
 
 ```
+
+
+[<<-- anterior](../../../tree/cms_4_blog/cms)  -  [próximo -->>](../../../tree/cms_5_template_globals/cms)
