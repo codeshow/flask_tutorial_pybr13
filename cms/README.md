@@ -58,3 +58,12 @@ Use `admin` senha: `admin` para acessar. (ou altere a senha no tinydb em `cms/da
 8) Veja seu post online
 
 ![step8](https://user-images.githubusercontent.com/458654/31103180-12f59584-a7ac-11e7-9847-878eb599e65b.png)
+
+
+
+> Chegamos ao fim! agradeço se puder deixar um comentário clicando em `issues` ali em cima, pode ficar a vontade para sugerir ou criticar!
+
+[<<-- anterior](../../../tree/cms_8_test/cms)  -  [fim mas pode continuar -->>](http://FLASK.wtf)
+
+
+
