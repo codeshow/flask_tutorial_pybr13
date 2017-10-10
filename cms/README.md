@@ -35,3 +35,6 @@ Existem outras opções para configurar o Gunicorn mas esta é a linha de comand
 Repare como é importante o `import_name` que passamos para o `create_app`
 
 > OBS:  interessante que no `settings.yml` o DEBUG esteja `false` ao rodar com `wsgi`
+
+
+[<<-- anterior](../../../tree/cms_6_static/cms)  -  [próximo -->>](../../../tree/cms_8_test/cms)
