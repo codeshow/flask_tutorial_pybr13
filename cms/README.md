@@ -8,6 +8,12 @@ Você vai precisar de:
 - Editor de códigos de sua preferencia
 - Navegador Web
 
+> NOTA: para instalar o Python3.6 será necessário ter a zlib, no ubuntu instala-se com `sudo apt-get install zlib1g-dev` e no fedora/red-hat é `sudo yum install zlib-devel` procure como instalar a zlib no seu sistema operacional.
+
+
+## Windows?
+
+Se estiver usando windows baixe o instalador do Python 3.6 no site oficial http://python.org
 
 ## Instale o Python 3.6
 
