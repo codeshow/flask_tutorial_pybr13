@@ -8,7 +8,7 @@ cms/                   # module root
 ├── cli.py             # Ferramenta de linha de comando `cms --help`
 ```
 
-Implementação de `cli.py`
+Implementação de `cms/cli.py`
 
 
 ```py
