@@ -10,7 +10,7 @@ Factory é um padrão recomendado pela [documentação oficial do Flask](http://
 
 **factory** nada mais é do que uma **função** ou **Classe** que recebe como primeiro parametro o **app** e então **altera** ou **adiciona** alguma funcionalidade ou configuração durante a **fase de configuração** do nosso projeto.
 
-Exemplo:
+Exemplo (abra um `python` shell ai e faça teste o exemplo abaixo):
 
 ```python
 def create_object():
@@ -39,7 +39,10 @@ print(obj)
 
 Então agora imagine que o **obj** do exemplo acima é uma **app** `Flask` e aplicamos o mesmo conceito compondo a **app** através de extensões que são **functions** ou **Classes** que recebem o **app** como primeiro argumento. 
 
-## implementação de `app/__init__.py` com o application factory.
+Agora é sua vez de escrever o app factory em `cms/app/__init__.py`
+
+## implementação de `cms/app/__init__.py` com o application factory.
+
 
 ```py
 from flask import Flask
@@ -54,7 +57,7 @@ def create_app():
 
 ```
 
-e então no `cli.py` importamos esse factory
+e então no `cms/cli.py` importe esse factory
 
 ```py
 from cms.app import create_app
