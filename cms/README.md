@@ -22,7 +22,7 @@ cms/                   # module root
 └── settings.yml       # Configurações que serão carregadas
 ```
 
-Para criar os arquivos iniciais execute as 2 linhas abaixo
+Se estiver no Linux/mac para criar os arquivos iniciais execute as 2 linhas abaixo, se estiver no windows terá que criar as pastar uma a uma :( (u utilizar um emulador de shell/bash)
 
 ```bash
 mkdir -p tests cms/{app,config,ext,static,templates}
@@ -49,7 +49,7 @@ setup(
 
 ```
 
-agora ao rodar `python setup.py develop` a ferramente `cms` estará disponível.
+agora ao rodar `python setup.py develop` a ferramenta de linha de comando `cms` estará disponível.
 
 
 O app será servido ao digitar `cms runserver` na linha de comando
