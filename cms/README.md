@@ -279,7 +279,7 @@ def adduser(username, password):
         raise
     else:
         click.echo(f"Usuário {username} criado com sucesso!")
-``
+```
 
 Repare que adicionamos `with app.app_context()` é um gerenciador de contexto que forcene aqueles objetos que mencionei ali em cima e entre eles estará o `current_app`
 
