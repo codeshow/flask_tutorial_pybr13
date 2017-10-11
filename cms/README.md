@@ -68,7 +68,7 @@ def create_app(import_name='cms'):
 
 E no `cms/cli.py` passe o `__name__` como import_name para o `create_app`
 
-```
+```python
 import code
 import click
 form cms.app import create_app
