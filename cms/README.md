@@ -31,6 +31,8 @@ python3.6 -m venv venv
 . venv/bin/activate
 ```
 
+> NOTA: No windows a virtualenv tem uma pasta `Scripts` e dentro desta pasta está o `activate`
+
 ## Instale as dependências
 
 ```bash
