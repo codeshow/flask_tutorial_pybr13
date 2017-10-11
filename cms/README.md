@@ -9,22 +9,27 @@ cms/                   # module root
 
 Acesse o http://localhost:5000/admin/blogview/new/ e crie um novo blog post usando o formato markdown.
 
-```
-titulo:  
-Novo post
 
+titulo:  
+```
+Novo post
+```
 texto:
+```
 # Este e meu novo post
 - item da lista
 - outro item
 > isso é uma citação
 
 ![image](http://lorempixel.com/400/400)
+```
 
 Autor:
+```
 Seu Nome
-
-publicado: 
+``` 
+publicado:
+```
 True (marque o checkbox)
 ```
 
