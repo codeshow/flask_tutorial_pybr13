@@ -6,7 +6,7 @@ tests/
 
 Hora de testar a aplicação usando o Py.Test
 
-primeiro configuramos o `py.test` no `tests/conftest.py`
+primeiro configuramos o `py.test` no novo arquivo `tests/conftest.py`
 
 
 ```py
@@ -29,9 +29,9 @@ Agora todos nossos testes terão em seu escopo a fixture `app` e então usaremos
   fornece uma espécie de **headless browser** que responde a métodos HTTP get, post, put, delete etc...
 
 
+Agora criamos um novo arquivo `tests/test_app.py`
+
 ```py
-
-
 def test_config_sitename(app):
     assert app.config.SITENAME == 'Flask CMS'
 
@@ -88,6 +88,8 @@ ou se preferir usar o target já definido no `Makefile`
 ```bash
 make test
 ```
+
+![screenshot_2017-10-10_23-53-32](https://user-images.githubusercontent.com/458654/31420151-3e44c96a-ae16-11e7-98ea-42e0790fcf15.png)
 
 
 
