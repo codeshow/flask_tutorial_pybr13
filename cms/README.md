@@ -33,6 +33,10 @@ publicado:
 True (marque o checkbox)
 ```
 
+![screenshot_2017-10-10_23-29-58](https://user-images.githubusercontent.com/458654/31419574-f273f982-ae12-11e7-8d45-2e153b44915b.png)
+
+
+
 Salve este post e acesse http://localhost:5000 e clique no post.
 
 Você irá perceber que o texto que aparece é o markdown puro sem renderizar, precisamos fazer o render do markdown para transformar em HTML.
