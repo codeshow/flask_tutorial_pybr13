@@ -4,7 +4,7 @@
 tests/
 ```
 
-Hora de testar a aplicação usando o PyCharm
+Hora de testar a aplicação usando o Py.Test
 
 primeiro configuramos o `py.test` no `tests/conftest.py`
 
