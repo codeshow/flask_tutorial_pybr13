@@ -16,7 +16,7 @@ Agora vamos entender alguns componentes do `Jinja2` como:
 
 Para facilitar a nossa vida vamos usar a extensão `Flask-Bootstrap` instalada com `pip install flask_bootstrap` esta extensão fornece os templates base para que tenhamos os layouts do `bootstrap` facilmente na app.
 
-Comece incluindo o `FlaskBootstrap` como nova extensao no `settings.yml`
+Comece incluindo o `FlaskBootstrap` como nova extensao no `cms/settings.yml`
 
 
 ```yaml
@@ -34,7 +34,7 @@ Comece incluindo o `FlaskBootstrap` como nova extensao no `settings.yml`
 
 Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta extender o template `bootstrap/base.html`.
 
-`templates/base.html`
+crie o arquivo `cms/templates/base.html`
 
 ```html
 {% extends "bootstrap/base.html" %}
@@ -67,7 +67,7 @@ Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta ext
 
 ```
 
-`templates/blog.html`
+edite o `cms/templates/blog.html` para estender o `base.html`
 
 ```html
 {% extends "base.html" %}
@@ -90,8 +90,8 @@ Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta ext
 ```
 
 
-
-`templates/post.html`
+e faça o mesmo com o post
+`cms/templates/post.html`
 
 ```html
 {% extends "base.html" %}
@@ -112,8 +112,9 @@ Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta ext
 {% endblock %}
 ```
 
+E crie alguns novos templates:
 
-`templates/sidebar.html`
+`cms/templates/sidebar.html`
 
 ```html
 <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
@@ -137,7 +138,7 @@ Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta ext
 ```
 
 
-`templates/navbar.html`
+`cms/templates/navbar.html`
 
 ```html
 <nav class="navbar navbar-default">
@@ -161,7 +162,7 @@ Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta ext
 ```
 
 
-`templates/pager.html`
+`cms/templates/pager.html`
 
 ```html
 <hr>
@@ -173,10 +174,13 @@ Agora vamos ajustar os teplates para usar o FlaskBootstrap e para isso basta ext
 </nav>
 ```
 
-Agora executando o `cms runserver` o nosso layout já estará completamente renovado!
+Agora executando o `cms runserver` e acessando http://locaslhost:5000 o nosso layout já estará completamente renovado!
 
 
-> Porém você verá algumas mensagens de placeholder como `adicione config.DESCRIPTION`
+![screenshot_2017-10-10_23-15-29](https://user-images.githubusercontent.com/458654/31419223-ec7f765c-ae10-11e7-8afc-ac285655391f.png)
+
+
+Porém você verá algumas mensagens de placeholder como `adicione config.DESCRIPTION`
 
 Então vamos completar o `settings.yml`
 
@@ -193,6 +197,8 @@ CMS:
   ...
 
 ```
+
+Execute novamente `cms runserver` e verá as mudanças
 
 
 [<<-- anterior](../../../tree/cms_4_blog/cms)  -  [próximo -->>](../../../tree/cms_5_template_globals/cms)
