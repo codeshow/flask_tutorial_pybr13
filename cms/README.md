@@ -60,9 +60,12 @@ def create_app():
 e então no `cms/cli.py` importe esse factory
 
 ```py
+import code
+import click
 from cms.app import create_app
 
 app = create_app()
+...
 ```
 
 A partir daqui já podemos executar alguns comandos:
