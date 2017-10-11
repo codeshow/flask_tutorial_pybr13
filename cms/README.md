@@ -93,7 +93,20 @@ e agora basta ler a config direto no template `cms/templates/base.html`
 
 O acesso a qualquer outro tipo de arquivo estático é feito da mesma maneira `url_for('static', filename='')` caso o seu blueprint tenha uma pasta especifica para arquivos estaticos basta usar `.` ou o nome do Blueprint ex: `url_for('blog.static', filename='')` ou `url_for('.static', filename='')` (dentro de um template renderizado pelo blueprint)
 
-Experimente com os outros temas do bootswatch!
+Experimente com os outros temas do http://bootswatch.com
+
+```bash
+wget https://bootswatch.com/darkly/bootstrap.min.css -O cms/static/css/swatch-darkly.css
+```
+
+e no `cms/settings.yml`
+```yaml
+  SWATCH: darkly
+```
+
+
+![screenshot_2017-10-11_00-00-15](https://user-images.githubusercontent.com/458654/31420316-2dfccaf2-ae17-11e7-9e54-0fb958db5e30.png)
+
 
 
 [<<-- anterior](../../../tree/cms_5_template_globals/cms)  -  [próximo -->>](../../../tree/cms_7_wsgi/cms)
