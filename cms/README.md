@@ -236,11 +236,63 @@ CMS:
   FLASK_ADMIN_SWATCH: default
 ```
 
-Crie um usuário para acessar o admin
+## Crie um usuário para acessar o admin
 
 ```bash
 cms adduser --username admin --password admin
 ```
+
+OOOOps  parece que aconteceu um erro?  (sem pânico é proposital) vamos olhar o motivo de não conseguirmos criar o user.. abra o arquivo `cms/cli.py` e veja a função `adduser` perto da linha 40
+
+Implementação atual:
+
+```python
+@main.command()
+@click.option('--username', prompt=True, required=True)
+@click.option('--password', prompt=True, required=True, hide_input=True,
+              confirmation_prompt=True)
+def adduser(username, password):
+    """Cria um novo usuário"""
+    try:
+        app.db.create_user(username, password)    #  <---  O ERRO ACONTECE AQUI
+    except Exception as e:
+        click.echo(f'Não foi possivel criar o usuário {username}')
+        raise
+    else:
+        click.echo(f"Usuário {username} criado com sucesso!")
+```
+
+O Erro acontece pois estamos tentando acessar `app.db.create_user` fora de um contexto de `app`, precisamos fazer isso sempre dentro de um contexto de app nos casos em que objetos como `request`, `session`, `g` ou `current_app` são necessários, no nosso caso o `database` utiliza o `current_app` portanto no `cms/cli.py` altere a função `adduser` para:
+
+```python
+@main.command()
+@click.option('--username', prompt=True, required=True)
+@click.option('--password', prompt=True, required=True, hide_input=True,
+              confirmation_prompt=True)
+def adduser(username, password):
+    """Cria um novo usuário"""
+    try:
+        with app.app_context():
+            app.db.create_user(username, password)
+    except Exception as e:
+        click.echo(f'Não foi possivel criar o usuário {username}')
+        raise
+    else:
+        click.echo(f"Usuário {username} criado com sucesso!")
+``
+
+Repare que adicionamos `with app.app_context()` é um gerenciador de contexto que forcene aqueles objetos que mencionei ali em cima e entre eles estará o `current_app`
+
+Agora sim salve e execute:
+
+```bash
+cms adduser --username admin --password admin
+
+# muitas mensagens de log
+Usuário admin criado com sucesso!
+```
+
+> NOTA: quanto o `cms/settings.yml` tiver o `DEBUG: false` as mensagens de log não irão mais aparecer.
 
 Execute o app
 
@@ -249,6 +301,11 @@ cms runserver
 ``` 
 
 acesse http://localhost:5000/admin e verá a tela de login e então pode fazer o login e acessar o `admin` que por enquanto estará vazio!
+
+![screenshot_2017-10-10_22-55-59](https://user-images.githubusercontent.com/458654/31418738-403d74e0-ae0e-11e7-91f3-71738690ceed.png)
+
+> NOTA: aproveite para dar uma olhada naquela sidebar à direita é a DEBUG Toolbar :)
+
 
 Vamos adicionar uma extensão de `blog` no admin no próximo passo:
 
