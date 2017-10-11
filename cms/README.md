@@ -120,6 +120,12 @@ Ou podemos de uma forma mais simples fazer isso direto no template `cms/template
  <p>{{ markdown(post.texto) | safe }}</p>
 ```
 
+reinicie o `cms runserver` e acesse http://localhost:5000/novo-post.html
+
+![screenshot_2017-10-10_23-27-22](https://user-images.githubusercontent.com/458654/31419497-95be881a-ae12-11e7-90dd-a4d8dfcd406e.png)
+
+
+Agora está bem melhor :) 
 
 [<<-- anterior](../../../tree/cms_5_jinja/cms)  -  [próximo -->>](../../../tree/cms_6_static/cms)
 
