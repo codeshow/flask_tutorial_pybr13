@@ -4,6 +4,7 @@ Neste diretório o projeto de CMS será desenvolvido, mão na massa! é com voc�
 
 Você vai precisar de:
 
+- git [como instalar](https://git-scm.com/book/pt-br/v1/Primeiros-passos-Instalando-Git)
 - Python 3.6+
 - Editor de códigos de sua preferencia
 - Navegador Web
