@@ -10,7 +10,7 @@ cms/                   # module root
 Agora é hora de criar nosso primeiro Blueprint que irá adicionar a funcionalidade
 de `Blog` ao CMS.
 
-Para começar vamos adicionar o factory do blog no `settings.yml`
+Para começar vamos adicionar o factory do blog no `cms/settings.yml`
 
 
 ```yml
@@ -22,7 +22,7 @@ Para começar vamos adicionar o factory do blog no `settings.yml`
     - cms.ext.blog.configure         # <-- Nova extensão
 ```
 
-Agora vamos implementar em `ext/blog.py`
+Agora vamos implementar o novo arquivo `cms/ext/blog.py`
 
 
 ```py
@@ -86,10 +86,13 @@ def configure(app):
 
 ```
 
-E como pode perceber se tentar rodar `cms runserver` e acessar http://localhost:5000 verá um erro
+E como pode perceber se tentar rodar no console `cms runserver` e acessar http://localhost:5000 verá um erro
 informando que o Jinja não encontrou o template `blog.html`
 
-Vamos criar o `templates/blog.html`
+![screenshot_2017-10-10_23-05-20](https://user-images.githubusercontent.com/458654/31418983-81474406-ae0f-11e7-9c16-60b0d1967507.png)
+
+
+Vamos criar o `cms/templates/blog.html`
 
 
 ```html
@@ -113,7 +116,7 @@ Vamos criar o `templates/blog.html`
 </html>
 ```
 
-e o `templates/post.html`
+e o `cms/templates/post.html`
 
 
 ```html
@@ -135,10 +138,30 @@ e o `templates/post.html`
 
 rode `cms runserver`
 
-Agora vá em http://localhost:5000/admin e adicione alguns posts! e acesse em http://localhost:5000
+Agora vá em http://localhost:5000/admin e adicione alguns posts! 
+
+![screenshot_2017-10-10_23-07-38](https://user-images.githubusercontent.com/458654/31419029-d37d0daa-ae0f-11e7-80fd-8679b803ecdd.png)
 
 
-Próximo passo é melhorar nossos templates com Jinja!
+clique no `salvar` e verá
+
+![screenshot_2017-10-10_23-08-15](https://user-images.githubusercontent.com/458654/31419044-ea26b5ec-ae0f-11e7-952d-81db73b26801.png)
+
+
+então acesse em http://localhost:5000 para ver as postagens
+
+![screenshot_2017-10-10_23-09-05](https://user-images.githubusercontent.com/458654/31419082-10842a3a-ae10-11e7-8ad5-5016d3565f65.png)
+
+e acesse http://localhost:5000/nova-postagem-no-blog.html para ler a noticia
+
+![screenshot_2017-10-10_23-09-20](https://user-images.githubusercontent.com/458654/31419092-210c9dd8-ae10-11e7-8134-82e7b75392fc.png)
+
+
+**NOOOSAAA como está feio esse layout!!!!***
+
+OK..
+
+Próximo passo é melhorar nossos templates com Jinja e Bootstrap!
 
 
 [<<-- anterior](../../../tree/cms_3_extension_factory/cms)  -  [próximo -->>](../../../tree/cms_5_jinja/cms)
