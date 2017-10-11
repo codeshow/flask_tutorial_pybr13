@@ -18,7 +18,7 @@ Para isto usaremos a extensão `FlaskDynaconf` do módulo `dynaconf` com esta
 extensão podemos ler as configurações a partir de arquivos, bancos de dados e 
 variáveis de ambiente.
 
-Em nosso CMS iremos ler as configurações de um arquivo `settings.yml` e também opcionalmente
+Em nosso CMS iremos ler as configurações de um arquivo `cms/settings.yml` e também opcionalmente
 de variáveis de ambiente.
 
 ```yaml
@@ -32,7 +32,7 @@ CMS:
   RELOADER: true
 ```
 
-Para começar a implentação do **config factory** no `config/__init__.py`
+Para começar a implentação do **config factory** no `cms/config/__init__.py`
 
 ```py
 from dynaconf.contrib.flask_dynaconf import FlaskDynaconf
@@ -47,15 +47,17 @@ def configure(app):
     )
 ```
 
-E então invocaremos essa função no `app factory` em `app/__init__.py`
+E então invocaremos essa função no `app factory` em `cms/app/__init__.py`
+
+> NOTA: repare que agora nosso `create_app` precisa receber `import_name` como parametro, isso acontece pois o import_name será importante para que ele consiga encontrar o arquivo de configuraçes, deixe o `cms/app/__init__.py` como o abaixo:
 
 ```py
 from flask import Flask
 from cms import config
 
 
-def create_app():
-    app = Flask(__name__)
+def create_app(import_name='cms'):
+    app = Flask(import_name)
 
     # Iniciar o sistema de configurações dinâmicas
     config.configure(app)
@@ -64,13 +66,27 @@ def create_app():
 
 ```
 
-e então no `cli.py` podemos utilizar alguns valores default a partir do
+E no `cms/cli.py` passe o `__name__` como import_name para o `create_app`
+
+```
+import code
+import click
+form cms.app import create_app
+
+app = create_app(__name__)
+...
+```
+
+e então ainda `cms/cli.py` podemos (opcionalmente) utilizar alguns valores default a partir do
 `app.config`
 
 Nas mensagens podemos fazer algo como:
 
 ```py
+def shell(......):
+    ...
     click.echo(f'Iniciando o shell do {app.config.SITENAME}')
+    ...
 ```
 
 e também nas opções dos comandos.
@@ -84,6 +100,8 @@ e também nas opções dos comandos.
 def runserver(debug, reloader, host, port):
 ...
 ```
+
+> NOTA: veja a implementação do `cms/cli.py` nesta branch ali em cima se quiser dar um copy-paste :)
 
 Pronto agora em qualquer momento podemos reescrever as configs no arquivo `settings.yml` ou exportar como variáveis de ambiente
 
