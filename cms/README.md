@@ -34,7 +34,7 @@ def configure(app):
     app.add_template_global(markdown)
 ```
 
-> A extensão acima adiciona ao cotnexto fo `Jinja` a global `markdown`
+> A extensão acima adiciona ao contexto do `Jinja` a função global `markdown` que irá receber um texto e transformar em HTML
 
 Agora será preciso carregar a nova extensão no `settings.yml`
 
@@ -79,6 +79,8 @@ Repare que agora temos o HTML puro ao acessar o post, ainda não é o que querem
 
 `Markup`
 
+O Jinja irá fazer o `escape` de tags html por questões de segurança, quando queremos dizer a ele que o texto em questão é seguro e pode ser renderizado temos que marcar como seguro, e a primeira forma é usar o `Markup` que é uma classe que recebe um texto e adiciona um método especial `__html__` (similar ao `__str__`) ao texto que foi passado.
+
 ```py
 import mistune
 from flask import Markup
@@ -92,7 +94,7 @@ def configure(app):
     app.add_template_global(markdown)
 ```
 
-Ou podemos de uma forma mais simples fazer isso no template usando o filtro `safe`
+Ou podemos de uma forma mais simples fazer isso direto no template usando o filtro `safe`
 
 
 ```html
