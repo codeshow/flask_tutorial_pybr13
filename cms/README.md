@@ -70,15 +70,20 @@ app = create_app()
 
 A partir daqui já podemos executar alguns comandos:
 
+Um shell com o app Flask para interagirmos, explorarmos e obter ajuda.
+
 ```bash
 
 $ cms shell
 >>> app.config
+>>> dir(app)
+>>> help(app.route)  # digite `q` para sair do help
+>>> exit()   # para sair do hell
 
 # ou
 
-$ cms runserver --port 8000
-* Running on http://0.0.0.0:3000/ (Press CTRL+C to quit)
+$ cms runserver --port 5000
+* Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
 ```
 
 No entanto se rodarmos o `cms adduser` teremos mais um erro:
