@@ -76,5 +76,19 @@ def test_can_request_a_post(app):
     app.db.blog.delete_one({'slug': 'este-e-um-outro-teste'})
 ```
 
+Para executar os testes acima basta rodar
+
+```bash
+py.test -v tests/
+
+```
+
+ou se preferir usar o target já definido no `Makefile`
+
+```bash
+make test
+```
+
+
 
 [<<-- anterior](../../../tree/cms_7_wsgi/cms)  -  [próximo -->>](../../../tree/cms_9_deploy/cms)
