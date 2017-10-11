@@ -16,12 +16,12 @@ Hora de carregar as extensões que usaremos no projeto sendo elas:
 - **Flask Debug Toolbar** - Ferramenta para debug
 
 Para carregar essas extensões usaremos o conceito de `extension factory` e de
-forma dinâmica carregamos as extensões que serão definidas no `settings.yml`
+forma dinâmica carregamos as extensões que serão definidas no `cms/settings.yml`
 
 Vamos começar inicializando as extensões básicas e depois customizaremos o 
 `admin` e a parte de `autenticação`
 
-No `settings.yml` adicionaremos o item `EXTENSIONS`
+No `cms/settings.yml` adicionaremos o item `EXTENSIONS`
 
 ```py
 CMS:
@@ -45,9 +45,9 @@ Carregaremos dinamicamente todos os módulos definidos na lista `EXTENSIONS` e
 para cada um esperamos a existencia de uma função `configure` que recebe `app`
 como único argumento.
 
-a primeira coisa a fazer é implementar o `extension factory` em `ext/__init__.py` utilizando o `import_string` para a partir de um texto contento o caminho completo de um módulo podermos importa-lo para um objeto Python como na implementação abaixo: 
+a primeira coisa a fazer é implementar o `extension factory` em `cms/ext/__init__.py` utilizando o `import_string` para a partir de um texto contento o caminho completo de um módulo podermos importa-lo para um objeto Python como na implementação abaixo: 
 
-`ext/__init__.py`
+Implemente em `cms/ext/__init__.py`
 
 ```py
 import import_string
@@ -68,7 +68,7 @@ def configure(app):
 
 ```
 
-Agora é só invocar este factory no `app/__init__.py` app factory `create_app`
+Agora é só invocar este factory no `cms/app/__init__.py` app factory `create_app`
 
 ```py
 from flask import Flask
@@ -98,7 +98,7 @@ A primeira extensão que carregamos é a de banco de dados e neste tutorial esta
 
 ## TinyMongo
 
-No `ext/database.py`
+Implemente `cms/ext/database.py` (crie esse novo arquivo)
 
 ```py
 from pathlib import Path
@@ -121,7 +121,7 @@ def configure(app):
 
 Para autenticação usaremos o `Flask_simplelogin` que é a extensão mais simples para login no Flask.
 
-No `ext/auth.py`
+Implemente um novo arquivo `cms/ext/auth.py`
 
 ```py
 from flask import current_app
@@ -168,7 +168,7 @@ def create_user(username, password):
 
 ## Interface admin 
 
-No `ext/admin.py`
+IMplemente o novo arquivo `cms/ext/admin.py`
 
 ```py
 from flask_admin import Admin
@@ -191,7 +191,7 @@ def configure(app):
 
 ## Debug Toolbar
 
-No `ext/debug.py`
+Implemente o novo arquivo `cms/ext/debug.py`
 
 ```py
 from flask_debugtoolbar import DebugToolbarExtension
@@ -204,7 +204,9 @@ def configure(app):
 
 # Configuração das extensões
 
-Algumas extensões requerem configurações adicionais, basta incluir no `settings.yml`
+Algumas extensões requerem configurações adicionais, basta incluir no `cms/settings.yml` para ficar como no abaixo:
+
+> NOTA: fique atento para a identação já que todos os valores estão dentro do escopo de `CMS:`
 
 ```yml
 CMS:
@@ -233,6 +235,22 @@ CMS:
   FLASK_ADMIN_TEMPLATE_MODE: bootstrap3
   FLASK_ADMIN_SWATCH: default
 ```
+
+Crie um usuário para acessar o admin
+
+```bash
+cms adduser --username admin --password admin
+```
+
+Execute o app
+
+```bash
+cms runserver
+``` 
+
+acesse http://localhost:5000/admin e verá a tela de login e então pode fazer o login e acessar o `admin` que por enquanto estará vazio!
+
+Vamos adicionar uma extensão de `blog` no admin no próximo passo:
 
 
 [<<-- anterior](../../../tree/cms_3_config_factory/cms)  -  [próximo -->>](../../../tree/cms_4_blog/cms)
